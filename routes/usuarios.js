@@ -5,7 +5,7 @@ const { usuariosGet, usuariosPost, usuariosPut, usuariosDelete, usuariosPatch } 
 const router = Router();
 
 router.get('/',usuariosGet);
-router.post('/',[check('correo','El correo no es valido').isEmail],usuariosPost);
+router.post('/',[check('correo','El correo no es valido').isEmail()],usuariosPost);
 router.put('/:id',usuariosPut);
 router.delete('/:id',usuariosDelete);
 router.patch('/',usuariosPatch);
