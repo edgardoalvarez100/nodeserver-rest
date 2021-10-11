@@ -1,5 +1,6 @@
 
 const express = require("express");
+const rateLimit = require("express-rate-limit");
 const cors = require("cors");
 const { dbConnection } = require("../database/config");
 const fileUpload = require("express-fileupload");
@@ -38,6 +39,12 @@ class Server{
     }
 
     middlewares(){
+        //RATE LIMIT
+        this.app.use(rateLimit({
+            windowMs: 15  * 1000, // 15 seg
+            max: 30// limit each IP to 30 requests per windowMs
+          }));
+
         //CORS
         this.app.use(cors());
 
